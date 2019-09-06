@@ -13,19 +13,28 @@
 
 		<button class="generate">Get numbers!</button>
 
+		<div class="numbers-container"></div>
+
 		<script type="text/javascript">
 			const select = document.querySelector('select');
 			const generate = document.querySelector('.generate');
+			const numbersContainer = document.querySelector('.numbers-container');
 
 			function generateNumbers() {
 				let numbers = [];
-				for (let i = 0; i < +select.value; i++) {
-					numbers = [ ...numbers, Math.ceil(Math.random() * 4) * 25]
+				numbersContainer.innerHTML = null;
+				for (let i = 0; i < 6; i++) {
+					let newNumber;
+					if (i < +select.value) {
+						newNumber = Math.ceil(Math.random() * 4) * 25;
+					} else {
+						newNumber = Math.ceil(Math.random() * 10);
+					}
+					numbers = [ ...numbers, newNumber ];
+					const numberButton = document.createElement("button");
+					numberButton.textContent = newNumber;
+					numbersContainer.appendChild(numberButton);
 				};
-				for (let j = 0; j < 6 - +select.value; j++) {
-					numbers = [ ...numbers, Math.ceil(Math.random() * 10)]
-				};
-				console.log(numbers);
 			}
 
 			generate.addEventListener('click', generateNumbers);
