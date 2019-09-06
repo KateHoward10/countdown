@@ -15,10 +15,13 @@
 
 		<div class="numbers-container"></div>
 
+		<p class="target"></p>
+
 		<script type="text/javascript">
 			const select = document.querySelector('select');
 			const generate = document.querySelector('.generate');
 			const numbersContainer = document.querySelector('.numbers-container');
+			const target = document.querySelector(".target");
 
 			function generateNumbers() {
 				let numbers = [];
@@ -35,6 +38,7 @@
 					numberButton.textContent = newNumber;
 					numbersContainer.appendChild(numberButton);
 				};
+				target.textContent = `Target: ${Math.ceil(Math.random() * 999)}`;
 			}
 
 			generate.addEventListener('click', generateNumbers);
