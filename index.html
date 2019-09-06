@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Countdown!</title>
+	</head>
+	<body>
+		<select>
+			<option value="1">1 large</option>
+			<option value="2">2 large</option>
+			<option value="3">3 large</option>
+			<option value="4">4 large</option>
+		</select>
+
+		<button class="generate">Get numbers!</button>
+
+		<script type="text/javascript">
+			const select = document.querySelector('select');
+			const generate = document.querySelector('.generate');
+
+			function generateNumbers() {
+				let numbers = [];
+				for (let i = 0; i < +select.value; i++) {
+					numbers = [ ...numbers, Math.ceil(Math.random() * 4) * 25]
+				};
+				for (let j = 0; j < 6 - +select.value; j++) {
+					numbers = [ ...numbers, Math.ceil(Math.random() * 10)]
+				};
+				console.log(numbers);
+			}
+
+			generate.addEventListener('click', generateNumbers);
+		</script>
+	</body>
+</html>
