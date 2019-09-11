@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Parser } from 'hot-formula-parser';
 import './App.css';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   const [target, setTarget] = useState(null);
   const [numbers, setNumbers] = useState([]);
   const [workings, setWorkings] = useState([]);
+  const [total, setTotal] = useState(0);
 
   function generateNumbers() {
     setTarget(null);
@@ -23,9 +25,19 @@ function App() {
     setTarget(Math.ceil(Math.random() * 999));
   }
 
-  function addToWorkings(number) {
-    setWorkings([...workings, number]);
+  function addToWorkings(item) {
+    setWorkings([...workings, item]);
   }
+
+  useEffect(() => {
+    const formattedWorkings = workings
+      .join('')
+      .replace(/×/g, '*')
+      .replace(/÷/g, '/');
+    const parser = new Parser();
+    const result = parser.parse(formattedWorkings);
+    if (!result.error) setTotal(result.result);
+  }, [workings]);
 
   return (
     <div className="App">
@@ -58,7 +70,7 @@ function App() {
           ))}
       </div>
 
-      <p className="target-container">{`Target: ${target}`}</p>
+      {target && <p className="target-container">Target: {target}</p>}
 
       <div className="workings">
         <p>
@@ -66,6 +78,7 @@ function App() {
             <span key={index}>{item}</span>
           ))}
         </p>
+        <p>Total: {total}</p>
       </div>
     </div>
   );
