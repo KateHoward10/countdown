@@ -5,6 +5,7 @@ function App() {
   const [bigNumbers, setBigNumbers] = useState(1);
   const [target, setTarget] = useState(null);
   const [numbers, setNumbers] = useState([]);
+  const [workings, setWorkings] = useState([]);
 
   function generateNumbers() {
     setTarget(null);
@@ -22,8 +23,8 @@ function App() {
     setTarget(Math.ceil(Math.random() * 999));
   }
 
-  function addToWorkings(e) {
-    console.log(e);
+  function addToWorkings(number) {
+    setWorkings([...workings, number]);
   }
 
   return (
@@ -39,12 +40,19 @@ function App() {
         Get numbers!
       </button>
 
-      <div className="operators-container"></div>
+      <div className="operators-container">
+        {['+', '-', '×', '÷'].map((operator, index) => (
+          <button key={index} onClick={() => addToWorkings(operator)}>
+            {operator}
+          </button>
+        ))}
+      </div>
+
       <div className="numbers-container">
         {numbers &&
           numbers.length > 0 &&
           numbers.map((number, index) => (
-            <button key={index} value={number} className="number-button" onClick={addToWorkings}>
+            <button key={index} className="number-button" onClick={() => addToWorkings(number)}>
               {number}
             </button>
           ))}
@@ -52,7 +60,13 @@ function App() {
 
       <p className="target-container">{`Target: ${target}`}</p>
 
-      <div className="workings"></div>
+      <div className="workings">
+        <p>
+          {workings.map((item, index) => (
+            <span key={index}>{item}</span>
+          ))}
+        </p>
+      </div>
     </div>
   );
 }
