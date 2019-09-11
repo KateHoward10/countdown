@@ -8,6 +8,7 @@ function App() {
   const [numbers, setNumbers] = useState([]);
   const [workings, setWorkings] = useState([]);
   const [total, setTotal] = useState(0);
+  const [disabledNumbers, setDisabledNumbers] = useState([]);
 
   function generateNumbers() {
     setTarget(null);
@@ -25,8 +26,11 @@ function App() {
     setTarget(Math.ceil(Math.random() * 999));
   }
 
-  function addToWorkings(item) {
+  function addToWorkings(item, index) {
     setWorkings([...workings, item]);
+    if (index !== undefined) {
+      setDisabledNumbers([...disabledNumbers, index]);
+    }
   }
 
   function clearFromWorkings() {
@@ -68,7 +72,12 @@ function App() {
         {numbers &&
           numbers.length > 0 &&
           numbers.map((number, index) => (
-            <button key={index} className="number-button" onClick={() => addToWorkings(number)}>
+            <button
+              key={index}
+              disabled={disabledNumbers.includes(index)}
+              className="number-button"
+              onClick={() => addToWorkings(number, index)}
+            >
               {number}
             </button>
           ))}
