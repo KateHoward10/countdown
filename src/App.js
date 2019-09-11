@@ -29,6 +29,10 @@ function App() {
     setWorkings([...workings, item]);
   }
 
+  function clearFromWorkings() {
+    setWorkings(workings.slice(0, workings.length - 1));
+  }
+
   useEffect(() => {
     const formattedWorkings = workings
       .join('')
@@ -53,7 +57,7 @@ function App() {
       </button>
 
       <div className="operators-container">
-        {['+', '-', '×', '÷'].map((operator, index) => (
+        {['+', '-', '×', '÷', '(', ')'].map((operator, index) => (
           <button key={index} onClick={() => addToWorkings(operator)}>
             {operator}
           </button>
@@ -73,12 +77,14 @@ function App() {
       {target && <p className="target-container">Target: {target}</p>}
 
       <div className="workings">
+        <button onClick={clearFromWorkings}>CLEAR</button>
         <p>
           {workings.map((item, index) => (
             <span key={index}>{item}</span>
           ))}
         </p>
         <p>Total: {total}</p>
+        {total === target && <h3>That's it, well done!</h3>}
       </div>
     </div>
   );
