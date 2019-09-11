@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Parser } from 'hot-formula-parser';
+import Number from './components/Number';
 import './App.css';
 
 function App() {
@@ -72,14 +73,12 @@ function App() {
         {numbers &&
           numbers.length > 0 &&
           numbers.map((number, index) => (
-            <button
+            <Number
               key={index}
+              value={number}
               disabled={disabledNumbers.includes(index)}
-              className="number-button"
               onClick={() => addToWorkings(number, index)}
-            >
-              {number}
-            </button>
+            />
           ))}
       </div>
 
