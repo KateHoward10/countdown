@@ -62,7 +62,7 @@ function App() {
 
   return (
     <div className="App">
-      <select onChange={e => setBigNumbers(+e.value)}>
+      <select onChange={e => setBigNumbers(e.target.value)}>
         <option value={1}>1 large</option>
         <option value={2}>2 large</option>
         <option value={3}>3 large</option>
@@ -73,7 +73,7 @@ function App() {
         Get numbers!
       </button>
 
-      <button class="reset" onClick={reset}>
+      <button className="reset" onClick={reset}>
         Reset
       </button>
 
