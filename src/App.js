@@ -24,7 +24,7 @@ function App() {
       newNumbers.push(newNumber);
       setNumbers(newNumbers);
     }
-    setTarget(Math.ceil(Math.random() * 999));
+    setTarget(Math.ceil(Math.random() * 899) + 100);
   }
 
   function addToWorkings(item, index) {
