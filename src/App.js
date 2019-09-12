@@ -35,6 +35,10 @@ function App() {
   }
 
   function clearFromWorkings() {
+    if (typeof workings[workings.length - 1] === 'number') {
+      disabledNumbers.pop();
+      setDisabledNumbers(disabledNumbers);
+    }
     setWorkings(workings.slice(0, workings.length - 1));
   }
 
