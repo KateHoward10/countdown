@@ -42,6 +42,14 @@ function App() {
     setWorkings(workings.slice(0, workings.length - 1));
   }
 
+  function reset() {
+    setTarget(null);
+    setNumbers([]);
+    setWorkings([]);
+    setTotal(0);
+    setDisabledNumbers([]);
+  }
+
   useEffect(() => {
     const formattedWorkings = workings
       .join('')
@@ -63,6 +71,10 @@ function App() {
 
       <button className="generate" onClick={generateNumbers}>
         Get numbers!
+      </button>
+
+      <button class="reset" onClick={reset}>
+        Reset
       </button>
 
       <div className="operators-container">
