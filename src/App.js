@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Parser } from 'hot-formula-parser';
 import Number from './components/Number';
+import Button from './components/Button';
 import './App.css';
 
 function App() {
@@ -69,19 +70,15 @@ function App() {
         <option value={4}>4 large</option>
       </select>
 
-      <button className="generate" onClick={generateNumbers}>
-        Get numbers!
-      </button>
+      <Button onClick={generateNumbers}>Get numbers!</Button>
 
-      <button className="reset" onClick={reset}>
-        Reset
-      </button>
+      <Button onClick={reset}>Reset</Button>
 
       <div className="operators-container">
         {['+', '-', '×', '÷', '(', ')'].map((operator, index) => (
-          <button key={index} onClick={() => addToWorkings(operator)}>
+          <Button key={index} onClick={() => addToWorkings(operator)}>
             {operator}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -101,7 +98,7 @@ function App() {
       {target && <p className="target-container">Target: {target}</p>}
 
       <div className="workings">
-        <button onClick={clearFromWorkings}>CLEAR</button>
+        <Button onClick={clearFromWorkings}>CLEAR</Button>
         <p>
           {workings.map((item, index) => (
             <span key={index}>{item}</span>

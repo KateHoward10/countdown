@@ -4,6 +4,8 @@ export const Container = styled.button`
 	background-color: rgba(0, 0, 255, ${props => (props.disabled ? 0.5 : 1)});
 	color: white;
 	font-size: 20px;
-	padding: 5px;
+	border: none;
 	margin: 5px;
+	width: 50px;
+	height: 50px;
 `;
