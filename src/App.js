@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Parser } from 'hot-formula-parser';
 import Number from './components/Number';
 import Button from './components/Button';
+import Target from './components/Target';
 import './App.css';
 
 function App() {
@@ -74,13 +75,7 @@ function App() {
 
       <Button onClick={reset}>Reset</Button>
 
-      <div className="operators-container">
-        {['+', '-', '×', '÷', '(', ')'].map((operator, index) => (
-          <Button key={index} onClick={() => addToWorkings(operator)}>
-            {operator}
-          </Button>
-        ))}
-      </div>
+      {target && <Target value={target} />}
 
       <div className="numbers-container">
         {numbers &&
@@ -95,7 +90,13 @@ function App() {
           ))}
       </div>
 
-      {target && <p className="target-container">Target: {target}</p>}
+      <div className="operators-container">
+        {['+', '-', '×', '÷', '(', ')'].map((operator, index) => (
+          <Button key={index} onClick={() => addToWorkings(operator)}>
+            {operator}
+          </Button>
+        ))}
+      </div>
 
       <div className="workings">
         <Button onClick={clearFromWorkings}>CLEAR</Button>
@@ -104,7 +105,7 @@ function App() {
             <span key={index}>{item}</span>
           ))}
         </p>
-        <p>Total: {total}</p>
+        <p>{total}</p>
         {total === target && <h3>That's it, well done!</h3>}
       </div>
     </div>
