@@ -3,6 +3,7 @@ import { Parser } from 'hot-formula-parser';
 import Number from './components/Number';
 import Button from './components/Button';
 import Target from './components/Target';
+import Workings from './components/Workings';
 import './App.css';
 
 function App() {
@@ -98,16 +99,19 @@ function App() {
         ))}
       </div>
 
-      <div className="workings">
-        <Button onClick={clearFromWorkings}>CLEAR</Button>
+      <Button onClick={clearFromWorkings}>CLEAR</Button>
+
+      <Workings>
         <p>
           {workings.map((item, index) => (
             <span key={index}>{item}</span>
           ))}
         </p>
+
         <p>{total}</p>
+
         {total === target && <h3>That's it, well done!</h3>}
-      </div>
+      </Workings>
     </div>
   );
 }
