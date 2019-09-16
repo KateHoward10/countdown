@@ -31,9 +31,16 @@ function App() {
   }
 
   function addToWorkings(item, index) {
-    setWorkings([...workings, item]);
-    if (index !== undefined) {
-      setDisabledNumbers([...disabledNumbers, index]);
+    if (
+      item === '(' ||
+      item === ')' ||
+      workings[workings.length - 1] === '(' ||
+      workings[workings.length - 1] === ')' ||
+      (typeof item === 'number' && typeof workings[workings.length - 1] !== 'number') ||
+      (typeof item !== 'number' && typeof workings[workings.length - 1] === 'number')
+    ) {
+      setWorkings([...workings, item]);
+      if (index !== undefined) setDisabledNumbers([...disabledNumbers, index]);
     }
   }
 
@@ -108,7 +115,9 @@ function App() {
           ))}
         </p>
 
-        <p>{total}</p>
+        <p>
+          <strong>{total}</strong>
+        </p>
 
         {total === target && <h3>That's it, well done!</h3>}
       </Workings>
