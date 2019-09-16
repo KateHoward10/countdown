@@ -14,6 +14,7 @@ function App() {
   const [workings, setWorkings] = useState([]);
   const [total, setTotal] = useState(0);
   const [disabledNumbers, setDisabledNumbers] = useState([]);
+  const [countingDown, toggleCountingDown] = useState(false);
   const [degrees, setDegrees] = useState(0);
 
   function generateNumbers() {
@@ -30,6 +31,7 @@ function App() {
       setNumbers(newNumbers);
     }
     setTarget(Math.ceil(Math.random() * 899) + 100);
+    toggleCountingDown(true);
   }
 
   function addToWorkings(item, index) {
@@ -60,6 +62,7 @@ function App() {
     setWorkings([]);
     setTotal(0);
     setDisabledNumbers([]);
+    generateNumbers();
   }
 
   function useInterval(callback, delay) {
@@ -80,7 +83,17 @@ function App() {
     }, [delay]);
   }
 
-  useInterval(() => setDegrees(degrees + 3), 1000);
+  useInterval(
+    () => {
+      if (degrees < 180) {
+        setDegrees(degrees + 3);
+      } else {
+        toggleCountingDown(false);
+        alert("Time's up!");
+      }
+    },
+    countingDown ? 1000 : null
+  );
 
   useEffect(() => {
     const formattedWorkings = workings
