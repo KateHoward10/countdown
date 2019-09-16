@@ -11,9 +11,11 @@ export const Face = styled.div`
 
 export const Hand = styled.div`
 	width: 2px;
-	height: 40px;
+	height: 45px;
 	background-color: navy;
 	position: absolute;
-	top: 10px;
+	top: 5px;
 	left: 49px;
+	transform-origin: 0 100%;
+	transform: rotate(${props => props.degrees}deg);
 `;

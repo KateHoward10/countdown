@@ -4,7 +4,7 @@ import { Face, Hand } from './styles';
 function Clock(props) {
 	return (
 		<Face>
-			<Hand />
+			<Hand {...props} />
 		</Face>
 	);
 }

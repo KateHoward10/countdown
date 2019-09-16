@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Parser } from 'hot-formula-parser';
 import Clock from './components/Clock';
 import Number from './components/Number';
@@ -14,6 +14,7 @@ function App() {
   const [workings, setWorkings] = useState([]);
   const [total, setTotal] = useState(0);
   const [disabledNumbers, setDisabledNumbers] = useState([]);
+  const [degrees, setDegrees] = useState(0);
 
   function generateNumbers() {
     setTarget(null);
@@ -61,6 +62,26 @@ function App() {
     setDisabledNumbers([]);
   }
 
+  function useInterval(callback, delay) {
+    const savedCallback = useRef();
+
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    useEffect(() => {
+      function tick() {
+        savedCallback.current();
+      }
+      if (delay !== null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
+  }
+
+  useInterval(() => setDegrees(degrees + 3), 1000);
+
   useEffect(() => {
     const formattedWorkings = workings
       .join('')
@@ -73,7 +94,7 @@ function App() {
 
   return (
     <div className="App">
-      <Clock />
+      <Clock degrees={degrees} />
 
       <div className="controls-container">
         <select onChange={e => setBigNumbers(e.target.value)}>
