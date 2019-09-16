@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Parser } from 'hot-formula-parser';
+import Clock from './components/Clock';
 import Number from './components/Number';
 import Button from './components/Button';
 import Target from './components/Target';
@@ -72,18 +73,22 @@ function App() {
 
   return (
     <div className="App">
-      <select onChange={e => setBigNumbers(e.target.value)}>
-        <option value={1}>1 large</option>
-        <option value={2}>2 large</option>
-        <option value={3}>3 large</option>
-        <option value={4}>4 large</option>
-      </select>
+      <Clock />
 
-      <Button onClick={generateNumbers}>Get numbers!</Button>
+      <div className="controls-container">
+        <select onChange={e => setBigNumbers(e.target.value)}>
+          <option value={1}>1 large</option>
+          <option value={2}>2 large</option>
+          <option value={3}>3 large</option>
+          <option value={4}>4 large</option>
+        </select>
 
-      <Button onClick={reset}>Reset</Button>
+        <Button onClick={generateNumbers}>Get numbers!</Button>
 
-      {target && <Target value={target} />}
+        <Button onClick={reset}>Reset</Button>
+      </div>
+
+      <Target target={target} />
 
       <div className="numbers-container">
         {numbers &&
@@ -106,8 +111,6 @@ function App() {
         ))}
       </div>
 
-      <Button onClick={clearFromWorkings}>CLEAR</Button>
-
       <Workings>
         <p>
           {workings.map((item, index) => (
@@ -120,6 +123,10 @@ function App() {
         </p>
 
         {total === target && <h3>That's it, well done!</h3>}
+
+        <Button className="clear-button" onClick={clearFromWorkings}>
+          CLEAR
+        </Button>
       </Workings>
     </div>
   );

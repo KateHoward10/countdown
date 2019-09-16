@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container, Box, Text } from './styles';
 
-function Target({ value }) {
+function Target({ target }) {
 	return (
 		<Container>
 			<Box>
-				<Text>{value}</Text>
+				<Text>{target ? target : '___'}</Text>
 			</Box>
 		</Container>
 	);

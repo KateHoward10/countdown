@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from './styles';
 
-function Button({ children, onClick }) {
-	return <Container onClick={onClick}>{children}</Container>;
+function Button(props) {
+	return <Container {...props}>{props.children}</Container>;
 }
 
 export default Button;

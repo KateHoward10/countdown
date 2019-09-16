@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 	height: 40vh;
-	max-width: 500px;
+	width: 500px;
 	padding: 10px;
-	margin: 10px auto;
+	margin: 5px auto;
 	border: 2px solid grey;
 	font-size: 24px;
 	font-family: cursive;
+	text-align: center;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

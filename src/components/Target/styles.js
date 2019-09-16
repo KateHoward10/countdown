@@ -7,7 +7,8 @@ export const Container = styled.div`
 
 export const Box = styled.div`
 	background-color: black;
-	padding: 10px;
+	padding: 5px 10px;
+	padding-top: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
