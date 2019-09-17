@@ -48,12 +48,17 @@ function App() {
     }
   }
 
-  function clearFromWorkings() {
+  function backspace() {
     if (typeof workings[workings.length - 1] === 'number') {
       disabledNumbers.pop();
       setDisabledNumbers(disabledNumbers);
     }
     setWorkings(workings.slice(0, workings.length - 1));
+  }
+
+  function clearAll() {
+    setWorkings([]);
+    setDisabledNumbers([]);
   }
 
   function reset() {
@@ -158,9 +163,10 @@ function App() {
 
         {total === target && <h3>That's it, well done!</h3>}
 
-        <Button className="clear-button" onClick={clearFromWorkings}>
-          CLEAR
-        </Button>
+        <div className="clear-buttons">
+          <Button onClick={backspace}>Backspace</Button>
+          <Button onClick={clearAll}>Clear All</Button>
+        </div>
       </Workings>
     </div>
   );

@@ -8,8 +8,9 @@ select {
   font-size: 20px;
 }
 
-.clear-button {
+.clear-buttons {
   position: absolute;
   top: 0;
   right: 0;
+  font-size: 16px;
 }
