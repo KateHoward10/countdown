@@ -90,7 +90,7 @@ function App() {
         setDegrees(degrees + 3);
       } else {
         toggleCountingDown(false);
-        alert("Time's up!");
+        setMessage(`Time's up! ${Math.abs(target - total)} away`);
       }
     },
     countingDown ? 500 : null
