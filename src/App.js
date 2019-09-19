@@ -16,9 +16,14 @@ function App() {
   const [disabledNumbers, setDisabledNumbers] = useState([]);
   const [countingDown, toggleCountingDown] = useState(false);
   const [degrees, setDegrees] = useState(0);
+  const [message, setMessage] = useState(null);
 
   function generateNumbers() {
-    setTarget(null);
+    setWorkings([]);
+    setTotal(0);
+    setDisabledNumbers([]);
+    setDegrees(0);
+    setMessage(null);
     let newNumbers = [];
     for (let i = 0; i < 6; i++) {
       let newNumber;
@@ -61,16 +66,6 @@ function App() {
     setDisabledNumbers([]);
   }
 
-  function reset() {
-    setTarget(null);
-    setNumbers([]);
-    setWorkings([]);
-    setTotal(0);
-    setDisabledNumbers([]);
-    setDegrees(0);
-    generateNumbers();
-  }
-
   function useInterval(callback, delay) {
     const savedCallback = useRef();
 
@@ -98,7 +93,7 @@ function App() {
         alert("Time's up!");
       }
     },
-    countingDown ? 1000 : null
+    countingDown ? 500 : null
   );
 
   useEffect(() => {
@@ -110,6 +105,13 @@ function App() {
     const result = parser.parse(formattedWorkings);
     if (!result.error) setTotal(result.result);
   }, [workings]);
+
+  useEffect(() => {
+    if (target === total) {
+      toggleCountingDown(false);
+      setMessage(`Solved in ${degrees / 6} seconds`);
+    }
+  }, [target, total, degrees]);
 
   return (
     <div className="App">
@@ -124,8 +126,6 @@ function App() {
         </select>
 
         <Button onClick={generateNumbers}>Get numbers!</Button>
-
-        <Button onClick={reset}>Reset</Button>
       </div>
 
       <Target target={target} />
@@ -162,7 +162,7 @@ function App() {
           <strong>{total}</strong>
         </p>
 
-        {total === target && <h3>That's it, well done!</h3>}
+        <h3>{message}</h3>
 
         <div className="clear-buttons">
           <Button onClick={backspace}>Backspace</Button>
