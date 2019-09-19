@@ -67,6 +67,7 @@ function App() {
     setWorkings([]);
     setTotal(0);
     setDisabledNumbers([]);
+    setDegrees(0);
     generateNumbers();
   }
 
