@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Parser } from 'hot-formula-parser';
+import useInterval from './hooks/useInterval';
 import Clock from './components/Clock';
 import Number from './components/Number';
 import Button from './components/Button';
@@ -9,7 +10,7 @@ import './App.css';
 
 function App() {
   const [bigNumbers, setBigNumbers] = useState(1);
-  const [target, setTarget] = useState(null);
+  const [target, setTarget] = useState('___');
   const [numbers, setNumbers] = useState([]);
   const [workings, setWorkings] = useState([]);
   const [total, setTotal] = useState(0);
@@ -36,7 +37,6 @@ function App() {
       setNumbers(newNumbers);
     }
     setTarget(Math.ceil(Math.random() * 899) + 100);
-    toggleCountingDown(true);
   }
 
   function addToWorkings(item, index) {
@@ -64,24 +64,6 @@ function App() {
   function clearAll() {
     setWorkings([]);
     setDisabledNumbers([]);
-  }
-
-  function useInterval(callback, delay) {
-    const savedCallback = useRef();
-
-    useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
-
-    useEffect(() => {
-      function tick() {
-        savedCallback.current();
-      }
-      if (delay !== null) {
-        let id = setInterval(tick, delay);
-        return () => clearInterval(id);
-      }
-    }, [delay]);
   }
 
   useInterval(
@@ -128,7 +110,7 @@ function App() {
         <Button onClick={generateNumbers}>Get numbers!</Button>
       </div>
 
-      <Target target={target} />
+      <Target target={target} toggleCountingDown={toggleCountingDown} setTarget={setTarget} />
 
       <div className="numbers-container">
         {numbers &&
