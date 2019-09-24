@@ -4,6 +4,8 @@ export const Face = styled.div`
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
+	border: 2px solid blue;
+	box-shadow: 0 0 10px grey;
 	background-color: #f7f6c8;
 	position: relative;
 	align-self: center;

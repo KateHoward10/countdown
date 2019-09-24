@@ -11,7 +11,7 @@ import './App.css';
 function App() {
   const [bigNumbers, setBigNumbers] = useState(1);
   const [target, setTarget] = useState('___');
-  const [numbers, setNumbers] = useState([]);
+  const [numbers, setNumbers] = useState(['', '', '', '', '', '']);
   const [workings, setWorkings] = useState([]);
   const [total, setTotal] = useState(0);
   const [disabledNumbers, setDisabledNumbers] = useState([]);
