@@ -45,23 +45,26 @@ function App() {
     if (
       item === '(' ||
       item === ')' ||
-      workings[workings.length - 1] === '(' ||
-      workings[workings.length - 1] === ')' ||
-      (typeof item === 'number' && typeof workings[workings.length - 1] !== 'number') ||
-      (typeof item !== 'number' && typeof workings[workings.length - 1] === 'number')
+      workings[workings.length - position - 1] === '(' ||
+      workings[workings.length - position - 1] === ')' ||
+      typeof item !== typeof workings[workings.length - position - 1]
     ) {
-      setWorkings([...workings, item]);
+      setWorkings([
+        ...workings.slice(0, workings.length - position),
+        item,
+        ...workings.slice(workings.length - position)
+      ]);
       if (index !== undefined) setDisabledNumbers([...disabledNumbers, index]);
     }
   }
 
   function backspace() {
     if (typeof workings[workings.length - 1 - position] === 'number') {
-      const deletedNumber = workings[workings.length - 1 - position];
+      const deletedNumber = workings[workings.length - position - 1];
       const indexInDisabled = disabledNumbers.findIndex(index => numbers[index] === deletedNumber);
       setDisabledNumbers(disabledNumbers.filter((item, index) => index !== indexInDisabled));
     }
-    setWorkings(workings.filter((item, index) => index !== workings.length - 1 - position));
+    setWorkings(workings.filter((item, index) => index !== workings.length - position - 1));
   }
 
   function clearAll() {
@@ -142,7 +145,7 @@ function App() {
           {workings.map((item, index) => (
             <span key={index}>
               {item}
-              {workings.length - 1 - position === index && <Cursor />}
+              {workings.length - position - 1 === index && <Cursor />}
             </span>
           ))}
         </span>
