@@ -56,11 +56,12 @@ function App() {
   }
 
   function backspace() {
-    if (typeof workings[workings.length - 1] === 'number') {
-      disabledNumbers.pop();
-      setDisabledNumbers(disabledNumbers);
+    if (typeof workings[workings.length - 1 - position] === 'number') {
+      const deletedNumber = workings[workings.length - 1 - position];
+      const indexInDisabled = disabledNumbers.findIndex(index => numbers[index] === deletedNumber);
+      setDisabledNumbers(disabledNumbers.filter((item, index) => index !== indexInDisabled));
     }
-    setWorkings(workings.slice(0, workings.length - 1));
+    setWorkings(workings.filter((item, index) => index !== workings.length - 1 - position));
   }
 
   function clearAll() {
@@ -137,14 +138,14 @@ function App() {
       </div>
 
       <Workings>
-        <p>
+        <span>
           {workings.map((item, index) => (
             <span key={index}>
               {item}
               {workings.length - 1 - position === index && <Cursor />}
             </span>
           ))}
-        </p>
+        </span>
 
         <p>
           <strong>{total}</strong>
@@ -153,8 +154,8 @@ function App() {
         <h3>{message}</h3>
 
         <div className="clear-buttons">
-          <Button onClick={() => setPosition(position + 1 > 0 ? position + 1 : position)}>←</Button>
-          <Button onClick={() => setPosition(position - 1 > 0 ? position - 1 : position)}>→</Button>
+          <Button onClick={() => setPosition(position + 1 < workings.length ? position + 1 : position)}>←</Button>
+          <Button onClick={() => setPosition(position > 0 ? position - 1 : position)}>→</Button>
           <Button onClick={backspace}>Backspace</Button>
           <Button onClick={clearAll}>Clear All</Button>
         </div>

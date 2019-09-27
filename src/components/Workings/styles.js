@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	height: 40vh;
-	width: 500px;
-	padding: 12px;
+	height: 35vh;
+	width: 450px;
+	padding: 2vh;
 	margin: 5px auto;
 	border: 2px solid grey;
 	font-size: 24px;
