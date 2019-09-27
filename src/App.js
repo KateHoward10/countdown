@@ -6,6 +6,7 @@ import Number from './components/Number';
 import Button from './components/Button';
 import Target from './components/Target';
 import Workings from './components/Workings';
+import Cursor from './components/Cursor';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
   const [countingDown, toggleCountingDown] = useState(false);
   const [degrees, setDegrees] = useState(0);
   const [message, setMessage] = useState(null);
+  const [position, setPosition] = useState(0);
 
   function generateNumbers() {
     setWorkings([]);
@@ -64,6 +66,7 @@ function App() {
   function clearAll() {
     setWorkings([]);
     setDisabledNumbers([]);
+    setMessage(null);
   }
 
   useInterval(
@@ -136,7 +139,10 @@ function App() {
       <Workings>
         <p>
           {workings.map((item, index) => (
-            <span key={index}>{item}</span>
+            <span key={index}>
+              {item}
+              {workings.length - 1 - position === index && <Cursor />}
+            </span>
           ))}
         </p>
 
@@ -147,6 +153,8 @@ function App() {
         <h3>{message}</h3>
 
         <div className="clear-buttons">
+          <Button onClick={() => setPosition(position + 1 > 0 ? position + 1 : position)}>←</Button>
+          <Button onClick={() => setPosition(position - 1 > 0 ? position - 1 : position)}>→</Button>
           <Button onClick={backspace}>Backspace</Button>
           <Button onClick={clearAll}>Clear All</Button>
         </div>
