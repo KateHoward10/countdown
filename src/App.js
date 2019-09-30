@@ -25,6 +25,7 @@ function App() {
   const [position, setPosition] = useState(0);
 
   function generateNumbers() {
+    setTarget('___');
     setNumbers(['', '', '', '', '', '']);
     setNumbersSet(0);
     setWorkings([]);
