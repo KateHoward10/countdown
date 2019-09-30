@@ -10,7 +10,6 @@ export const Container = styled.div`
 
 export const Button = styled.button`
 	font-size: 20px;
-	font-weight: bold;
 	border-radius: 5px;
 	border: 1px solid lightgrey;
 	box-shadow: 0 0 5px grey;

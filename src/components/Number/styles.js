@@ -10,7 +10,7 @@ export const Container = styled.button`
 	width: 50px;
 	height: 50px;
 	margin-top: 5px;
-	text-content: center;
+	text-align: center;
 	@media screen and (max-width: 600px) {
 		font-size: 6vw;
 		width: 14vw;

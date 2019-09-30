@@ -14,6 +14,8 @@ function App() {
   const [bigNumbers, setBigNumbers] = useState(1);
   const [target, setTarget] = useState('___');
   const [numbers, setNumbers] = useState(['', '', '', '', '', '']);
+  const [numbersSet, setNumbersSet] = useState(0);
+  const [placingNumbers, togglePlacingNumbers] = useState(false);
   const [workings, setWorkings] = useState([]);
   const [total, setTotal] = useState(0);
   const [disabledNumbers, setDisabledNumbers] = useState([]);
@@ -23,25 +25,37 @@ function App() {
   const [position, setPosition] = useState(0);
 
   function generateNumbers() {
+    setNumbers(['', '', '', '', '', '']);
+    setNumbersSet(0);
     setWorkings([]);
     setTotal(0);
     setDisabledNumbers([]);
     setDegrees(0);
     setMessage(null);
     setPosition(0);
-    let newNumbers = [];
-    for (let i = 0; i < 6; i++) {
-      let newNumber;
-      if (i < bigNumbers) {
-        newNumber = Math.ceil(Math.random() * 4) * 25;
-      } else {
-        newNumber = Math.ceil(Math.random() * 10);
-      }
-      newNumbers.push(newNumber);
-      setNumbers(newNumbers);
-    }
-    setTarget(Math.ceil(Math.random() * 899) + 100);
+    togglePlacingNumbers(true);
   }
+
+  useInterval(
+    () => {
+      let newNumbers = numbers;
+      if (numbersSet < 6) {
+        let newNumber;
+        if (numbersSet < bigNumbers) {
+          newNumber = Math.ceil(Math.random() * 4) * 25;
+        } else {
+          newNumber = Math.ceil(Math.random() * 10);
+        }
+        newNumbers[numbersSet] = newNumber;
+        setNumbers(newNumbers);
+        setNumbersSet(numbersSet + 1);
+      } else {
+        togglePlacingNumbers(false);
+        setTarget(Math.ceil(Math.random() * 899) + 100);
+      }
+    },
+    placingNumbers ? 300 : null
+  );
 
   function addToWorkings(item, index) {
     if (
@@ -122,16 +136,14 @@ function App() {
       <Target target={target} toggleCountingDown={toggleCountingDown} setTarget={setTarget} />
 
       <div className="numbers-container">
-        {numbers &&
-          numbers.length > 0 &&
-          numbers.map((number, index) => (
-            <Number
-              key={index}
-              value={number}
-              disabled={disabledNumbers.includes(index)}
-              onClick={() => addToWorkings(number, index)}
-            />
-          ))}
+        {numbers.map((number, index) => (
+          <Number
+            key={index}
+            value={number}
+            disabled={disabledNumbers.includes(index)}
+            onClick={() => addToWorkings(number, index)}
+          />
+        ))}
       </div>
 
       <div className="operators-container">
