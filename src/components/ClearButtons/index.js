@@ -10,7 +10,7 @@ function ClearButtons({ prev, next, backspace, clearAll }) {
 			</div>
 			<div>
 				<Button onClick={backspace}>Backspace</Button>
-				<Button onClick={clearAll}>Clear All</Button>
+				<Button onClick={clearAll}>CLEAR</Button>
 			</div>
 		</Container>
 	);

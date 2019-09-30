@@ -17,7 +17,7 @@ function App() {
   const [numbersSet, setNumbersSet] = useState(0);
   const [placingNumbers, togglePlacingNumbers] = useState(false);
   const [workings, setWorkings] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(null);
   const [disabledNumbers, setDisabledNumbers] = useState([]);
   const [countingDown, toggleCountingDown] = useState(false);
   const [degrees, setDegrees] = useState(0);
@@ -28,7 +28,7 @@ function App() {
     setNumbers(['', '', '', '', '', '']);
     setNumbersSet(0);
     setWorkings([]);
-    setTotal(0);
+    setTotal(null);
     setDisabledNumbers([]);
     setDegrees(0);
     setMessage(null);
@@ -155,7 +155,7 @@ function App() {
       </div>
 
       <ClearButtons
-        prev={() => setPosition(position + 1 < workings.length ? position + 1 : position)}
+        prev={() => setPosition(position + 1 <= workings.length ? position + 1 : position)}
         next={() => setPosition(position > 0 ? position - 1 : position)}
         backspace={backspace}
         clearAll={clearAll}
@@ -164,6 +164,7 @@ function App() {
         <span>
           {workings.map((item, index) => (
             <span key={index}>
+              {workings.length === position && index === 0 && <Cursor />}
               {item}
               {workings.length - position - 1 === index && <Cursor />}
             </span>

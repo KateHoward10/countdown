@@ -13,7 +13,7 @@ export const Container = styled.button`
 	text-align: center;
 	@media screen and (max-width: 600px) {
 		font-size: 6vw;
-		width: 14vw;
-		height: 14vw;
+		width: 15vw;
+		height: 15vw;
 	}
 `;
