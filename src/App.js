@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Parser } from 'hot-formula-parser';
 import useInterval from './hooks/useInterval';
+import usePrevious from './hooks/usePrevious';
 import Clock from './components/Clock';
 import Number from './components/Number';
 import Button from './components/Button';
@@ -25,6 +26,8 @@ function App() {
   const [position, setPosition] = useState(0);
   const [wins, setWins] = useState(0);
   const [gamesPlayed, setGamesPlayed] = useState(0);
+  const prevWorkings = usePrevious(workings);
+  const prevTotal = usePrevious(total);
 
   function generateNumbers() {
     setTarget('___');
@@ -106,19 +109,24 @@ function App() {
   );
 
   useEffect(() => {
-    const formattedWorkings = workings
-      .join('')
-      .replace(/×/g, '*')
-      .replace(/÷/g, '/');
-    const parser = new Parser();
-    const result = parser.parse(formattedWorkings);
-    if (!result.error) setTotal(result.result);
-    if (degrees < 180 && target === total) {
+    if (prevWorkings !== workings) {
+      const formattedWorkings = workings
+        .join('')
+        .replace(/×/g, '*')
+        .replace(/÷/g, '/');
+      const parser = new Parser();
+      const result = parser.parse(formattedWorkings);
+      if (!result.error) setTotal(result.result);
+    }
+  }, [workings, prevWorkings]);
+
+  useEffect(() => {
+    if (prevTotal !== total && degrees < 180 && target === total) {
       toggleCountingDown(false);
       setMessage(`Solved in ${degrees / 6} seconds`);
       setWins(wins + 1);
     }
-  }, [workings, target, total, degrees, wins]);
+  }, [target, prevTotal, total, degrees, wins]);
 
   return (
     <div className="App">
