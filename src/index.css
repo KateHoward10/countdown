@@ -5,9 +5,17 @@ body {
 	background-color: #509beb;
 	background-image: linear-gradient(to right, #50c9eb, #509beb, #50c9eb);
 	padding: 20px;
+	display: flex;
+	justify-content: center;
 }
 
 @font-face {
 	font-family: 'Pixel';
 	src: url('fonts/Pixel-LCD-7.woff') format('woff');
+}
+
+@media screen and (max-width: 600px) {
+	body {
+		padding: 2vw;
+	}
 }

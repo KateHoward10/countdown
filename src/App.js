@@ -7,6 +7,7 @@ import Button from './components/Button';
 import Target from './components/Target';
 import Workings from './components/Workings';
 import Cursor from './components/Cursor';
+import ClearButtons from './components/ClearButtons';
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
     setDisabledNumbers([]);
     setDegrees(0);
     setMessage(null);
+    setPosition(0);
     let newNumbers = [];
     for (let i = 0; i < 6; i++) {
       let newNumber;
@@ -96,7 +98,7 @@ function App() {
   }, [workings]);
 
   useEffect(() => {
-    if (target === total) {
+    if (degrees < 180 && target === total) {
       toggleCountingDown(false);
       setMessage(`Solved in ${degrees / 6} seconds`);
     }
@@ -140,6 +142,12 @@ function App() {
         ))}
       </div>
 
+      <ClearButtons
+        prev={() => setPosition(position + 1 < workings.length ? position + 1 : position)}
+        next={() => setPosition(position > 0 ? position - 1 : position)}
+        backspace={backspace}
+        clearAll={clearAll}
+      />
       <Workings>
         <span>
           {workings.map((item, index) => (
@@ -155,13 +163,6 @@ function App() {
         </p>
 
         <h3>{message}</h3>
-
-        <div className="clear-buttons">
-          <Button onClick={() => setPosition(position + 1 < workings.length ? position + 1 : position)}>←</Button>
-          <Button onClick={() => setPosition(position > 0 ? position - 1 : position)}>→</Button>
-          <Button onClick={backspace}>Backspace</Button>
-          <Button onClick={clearAll}>Clear All</Button>
-        </div>
       </Workings>
     </div>
   );
