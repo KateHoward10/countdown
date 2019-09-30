@@ -23,6 +23,8 @@ function App() {
   const [degrees, setDegrees] = useState(0);
   const [message, setMessage] = useState(null);
   const [position, setPosition] = useState(0);
+  const [wins, setWins] = useState(0);
+  const [gamesPlayed, setGamesPlayed] = useState(0);
 
   function generateNumbers() {
     setTarget('___');
@@ -35,6 +37,7 @@ function App() {
     setMessage(null);
     setPosition(0);
     togglePlacingNumbers(true);
+    setGamesPlayed(gamesPlayed + 1);
   }
 
   useInterval(
@@ -110,18 +113,16 @@ function App() {
     const parser = new Parser();
     const result = parser.parse(formattedWorkings);
     if (!result.error) setTotal(result.result);
-  }, [workings]);
-
-  useEffect(() => {
     if (degrees < 180 && target === total) {
       toggleCountingDown(false);
       setMessage(`Solved in ${degrees / 6} seconds`);
+      setWins(wins + 1);
     }
-  }, [target, total, degrees]);
+  }, [workings, target, total, degrees, wins]);
 
   return (
     <div className="App">
-      <Clock degrees={degrees} />
+      <Clock degrees={degrees} score={`${wins} / ${gamesPlayed}`} />
 
       <div className="controls-container">
         <select onChange={e => setBigNumbers(e.target.value)}>
@@ -147,7 +148,7 @@ function App() {
         ))}
       </div>
 
-      <div className="operators-container">
+      <div>
         {['+', '-', '×', '÷', '(', ')'].map((operator, index) => (
           <Button key={index} onClick={() => addToWorkings(operator)}>
             {operator}

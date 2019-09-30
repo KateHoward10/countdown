@@ -1,14 +1,21 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+`;
+
 export const Face = styled.div`
 	width: 100px;
 	height: 100px;
+	margin: 0 10px;
 	border-radius: 50%;
 	border: 2px solid blue;
 	box-shadow: 0 0 10px grey;
 	background-color: #f7f6c8;
 	position: relative;
-	align-self: center;
 `;
 
 export const Hand = styled.div`
@@ -47,4 +54,10 @@ export const Middle = styled.div`
 	top: 45px;
 	left: 45px;
 	background-color: blue;
+`;
+
+export const Score = styled.span`
+	font-size: 20px;
+	font-family: cursive;
+	margin: 0 10px;
 `;
