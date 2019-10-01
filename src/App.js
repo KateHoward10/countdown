@@ -94,6 +94,7 @@ function App() {
     setWorkings([]);
     setDisabledNumbers([]);
     setMessage(null);
+    setPosition(0);
   }
 
   useInterval(
