@@ -1,6 +1,6 @@
 ## Play the game
 
-Currently available [here](https://mathsy-maths.herokuapp.com)
+Currently available [here](https://katehoward10.github.io/countdown/)
 
 ![Countdown in action](Countdown.gif)
 
