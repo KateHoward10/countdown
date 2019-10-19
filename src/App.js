@@ -68,9 +68,8 @@ function App() {
     if (
       item === '(' ||
       item === ')' ||
-      workings[workings.length - position - 1] === '(' ||
-      workings[workings.length - position - 1] === ')' ||
-      typeof item !== typeof workings[workings.length - position - 1]
+      (typeof item !== typeof workings[workings.length - position - 1] &&
+        typeof item !== typeof workings[workings.length - position])
     ) {
       setWorkings([
         ...workings.slice(0, workings.length - position),
