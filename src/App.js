@@ -24,7 +24,7 @@ function App() {
   const [degrees, setDegrees] = useState(0);
   const [message, setMessage] = useState(null);
   const [position, setPosition] = useState(0);
-  const [wins, setWins] = useState(0);
+  const [score, setScore] = useState(0);
   const [gamesPlayed, setGamesPlayed] = useState(0);
   const prevWorkings = usePrevious(workings);
   const prevTotal = usePrevious(total);
@@ -40,7 +40,6 @@ function App() {
     setMessage(null);
     setPosition(0);
     togglePlacingNumbers(true);
-    setGamesPlayed(gamesPlayed + 1);
   }
 
   useInterval(
@@ -66,10 +65,9 @@ function App() {
 
   function addToWorkings(item, index) {
     if (
-      item === '(' ||
-      item === ')' ||
-      (typeof item !== typeof workings[workings.length - position - 1] &&
-        typeof item !== typeof workings[workings.length - position])
+      typeof item !== 'number' ||
+      (typeof workings[workings.length - position - 1] !== 'number' &&
+        typeof workings[workings.length - position] !== 'number')
     ) {
       setWorkings([
         ...workings.slice(0, workings.length - position),
@@ -102,7 +100,13 @@ function App() {
         setDegrees(degrees + 3);
       } else {
         toggleCountingDown(false);
+        setGamesPlayed(gamesPlayed + 1);
         setMessage(`Time's up! ${Math.abs(target - total)} away`);
+        if (target - total <= 5) {
+          setScore(score + 7);
+        } else if (target - total <= 10) {
+          setScore(score + 5);
+        }
       }
     },
     countingDown ? 500 : null
@@ -123,14 +127,15 @@ function App() {
   useEffect(() => {
     if (prevTotal !== total && degrees < 180 && target === total) {
       toggleCountingDown(false);
+      setGamesPlayed(gamesPlayed + 1);
       setMessage(`Solved in ${degrees / 6} seconds`);
-      setWins(wins + 1);
+      setScore(score + 10);
     }
-  }, [target, prevTotal, total, degrees, wins]);
+  }, [target, prevTotal, total, degrees, score, gamesPlayed]);
 
   return (
     <div className="App">
-      <Clock degrees={degrees} score={`${wins} / ${gamesPlayed}`} />
+      <Clock degrees={degrees} score={score} gamesPlayed={gamesPlayed} />
 
       <div className="controls-container">
         <select onChange={e => setBigNumbers(e.target.value)}>
@@ -140,7 +145,7 @@ function App() {
           <option value={4}>4 large</option>
         </select>
 
-        <Button onClick={generateNumbers}>Get numbers!</Button>
+        <Button onClick={generateNumbers}>New game</Button>
       </div>
 
       <Target target={target} toggleCountingDown={toggleCountingDown} setTarget={setTarget} />

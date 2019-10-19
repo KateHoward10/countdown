@@ -14,8 +14,8 @@ function Clock(props) {
 				<Middle />
 			</Face>
 			<Score>
-				<p>Score:</p>
-				<p>{props.score}</p>
+				<p>Score: {props.score}</p>
+				<p>Games played: {props.gamesPlayed}</p>
 			</Score>
 		</Container>
 	);
