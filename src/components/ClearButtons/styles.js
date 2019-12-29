@@ -14,9 +14,7 @@ export const Button = styled.button`
 	border: 1px solid lightgrey;
 	box-shadow: 0 0 5px grey;
 	margin: 2px;
+	padding: 5px;
 	color: white;
 	background-color: blue;
-	@media screen and (max-width: 600px) {
-		font-size: 5vw;
-	}
 `;

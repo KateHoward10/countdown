@@ -20,9 +20,3 @@ select {
 	align-items: center;
 	justify-content: center;
 }
-
-@media screen and (max-width: 600px) {
-	select {
-		font-size: 6vw;
-	}
-}
