@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	height: 35vh;
+	min-height: 30vh;
 	padding: 10px;
 	border: 2px solid grey;
 	font-size: 24px;

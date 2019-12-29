@@ -7,11 +7,16 @@
 	max-width: 800px;
 }
 
+.controls-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
 select {
 	font-size: 20px;
 	box-shadow: 0 0 5px grey;
 	background-color: white;
-	padding: 2px;
 }
 
 .numbers-container {
@@ -19,4 +24,12 @@ select {
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+}
+
+.operators-container {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }

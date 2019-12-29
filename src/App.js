@@ -161,20 +161,13 @@ function App() {
         ))}
       </div>
 
-      <div>
+      <div className="operators-container">
         {['+', '-', '×', '÷', '(', ')'].map((operator, index) => (
           <Button key={index} onClick={() => addToWorkings(operator)}>
             {operator}
           </Button>
         ))}
       </div>
-
-      <ClearButtons
-        prev={() => setPosition(position + 1 <= workings.length ? position + 1 : position)}
-        next={() => setPosition(position > 0 ? position - 1 : position)}
-        backspace={backspace}
-        clearAll={clearAll}
-      />
       <Workings>
         <span>
           {workings.map((item, index) => (
@@ -192,6 +185,12 @@ function App() {
 
         <h3>{message}</h3>
       </Workings>
+      <ClearButtons
+        prev={() => setPosition(position + 1 <= workings.length ? position + 1 : position)}
+        next={() => setPosition(position > 0 ? position - 1 : position)}
+        backspace={backspace}
+        clearAll={clearAll}
+      />
     </div>
   );
 }
