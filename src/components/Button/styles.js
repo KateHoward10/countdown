@@ -14,4 +14,5 @@ export const Container = styled.button`
 	justify-content: center;
 	padding: 2px;
 	margin: 8px;
+	width: 100%;
 `;

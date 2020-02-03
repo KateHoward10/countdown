@@ -144,11 +144,11 @@ function App() {
           <option value={3}>3 large</option>
           <option value={4}>4 large</option>
         </select>
-
-        <Button onClick={generateNumbers}>New game</Button>
+        <Target target={target} toggleCountingDown={toggleCountingDown} setTarget={setTarget} />
+        <Button style={{ width: '100px' }} onClick={generateNumbers}>
+          New game
+        </Button>
       </div>
-
-      <Target target={target} toggleCountingDown={toggleCountingDown} setTarget={setTarget} />
 
       <div className="numbers-container">
         {numbers.map((number, index) => (
