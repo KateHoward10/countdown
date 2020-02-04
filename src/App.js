@@ -138,14 +138,19 @@ function App() {
       <Clock degrees={degrees} score={score} gamesPlayed={gamesPlayed} />
 
       <div className="controls-container">
-        <select onChange={e => setBigNumbers(e.target.value)}>
-          <option value={1}>1 large</option>
-          <option value={2}>2 large</option>
-          <option value={3}>3 large</option>
-          <option value={4}>4 large</option>
-        </select>
+        <div className="range-container">
+          <label for="bigNumbers">{bigNumbers} large</label>
+          <input
+            type="range"
+            id="bigNumbers"
+            min="1"
+            max="5"
+            value={bigNumbers}
+            onChange={e => setBigNumbers(e.target.value)}
+          />
+        </div>
         <Target target={target} toggleCountingDown={toggleCountingDown} setTarget={setTarget} />
-        <Button style={{ width: '100px' }} onClick={generateNumbers}>
+        <Button className="new-button" onClick={generateNumbers}>
           New game
         </Button>
       </div>
