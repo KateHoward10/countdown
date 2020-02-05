@@ -58,7 +58,7 @@ export const Middle = styled.div`
 
 export const Score = styled.span`
 	font-size: 20px;
-	font-family: cursive;
+	font-family: 'Kalam', cursive;
 	font-weight: bold;
 	margin: 0 10px;
 `;

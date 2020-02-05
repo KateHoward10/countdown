@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	min-height: 30vh;
+	height: 30vh;
 	padding: 10px;
 	border: 2px solid grey;
 	font-size: 24px;
-	font-family: cursive;
+	font-family: 'Kalam', cursive;
 	text-align: center;
 	position: relative;
 	display: flex;

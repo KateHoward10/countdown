@@ -188,7 +188,7 @@ function App() {
           <strong>{total}</strong>
         </p>
 
-        <h3>{message}</h3>
+        <span>{message}</span>
       </Workings>
       <ClearButtons
         prev={() => setPosition(position + 1 <= workings.length ? position + 1 : position)}
