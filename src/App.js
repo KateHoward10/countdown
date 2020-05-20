@@ -162,7 +162,9 @@ function App() {
             value={number}
             disabled={disabledNumbers.includes(index)}
             onClick={() => addToWorkings(number, index)}
-          />
+          >
+            {number}
+          </Number>
         ))}
       </div>
 
@@ -188,7 +190,7 @@ function App() {
           <strong>{total}</strong>
         </p>
 
-        <span>{message}</span>
+        <span className="message">{message}</span>
       </Workings>
       <ClearButtons
         prev={() => setPosition(position + 1 <= workings.length ? position + 1 : position)}

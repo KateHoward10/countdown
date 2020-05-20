@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.button`
+const Number = styled.button`
 	background-color: ${props => (props.value === '' ? '#50c9eb' : `rgba(0, 0, 255, ${props.disabled ? 0.3 : 1})`)};
 	color: white;
 	font-size: 20px;
@@ -18,3 +18,5 @@ export const Container = styled.button`
 		height: 15vw;
 	}
 `;
+
+export default Number;

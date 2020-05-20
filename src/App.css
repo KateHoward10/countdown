@@ -44,3 +44,8 @@ input[type='range'] {
 	align-items: center;
 	justify-content: space-between;
 }
+
+.message {
+  position: absolute;
+  bottom: 0;
+}
