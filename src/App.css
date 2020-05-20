@@ -25,11 +25,6 @@
 	margin: 8px;
 }
 
-input[type='range'] {
-	width: 100px;
-	margin: 2px 0;
-}
-
 .numbers-container {
 	display: flex;
 	flex-direction: row;
@@ -48,4 +43,32 @@ input[type='range'] {
 .message {
   position: absolute;
   bottom: 0;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+	width: 100px;
+  height: 5px;
+  background: grey;
+  outline: none;
+  margin-top: 8px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: blue;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: blue;
+  cursor: pointer;
 }

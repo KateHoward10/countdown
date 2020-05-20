@@ -139,7 +139,7 @@ function App() {
 
       <div className="controls-container">
         <div className="range-container">
-          <label for="bigNumbers">{bigNumbers} large</label>
+          <label htmlFor="bigNumbers">{bigNumbers} large</label>
           <input
             type="range"
             id="bigNumbers"
@@ -147,6 +147,7 @@ function App() {
             max="5"
             value={bigNumbers}
             onChange={e => setBigNumbers(e.target.value)}
+            class="slider"
           />
         </div>
         <Target target={target} toggleCountingDown={toggleCountingDown} setTarget={setTarget} />
