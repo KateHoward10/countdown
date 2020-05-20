@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/countdown/static/css/main.72a92c54.chunk.css",
-    "main.js": "/countdown/static/js/main.39613fb6.chunk.js",
-    "main.js.map": "/countdown/static/js/main.39613fb6.chunk.js.map",
+    "main.js": "/countdown/static/js/main.81850d0d.chunk.js",
+    "main.js.map": "/countdown/static/js/main.81850d0d.chunk.js.map",
     "runtime~main.js": "/countdown/static/js/runtime~main.3a518bfb.js",
     "runtime~main.js.map": "/countdown/static/js/runtime~main.3a518bfb.js.map",
     "static/js/2.bd720dc2.chunk.js": "/countdown/static/js/2.bd720dc2.chunk.js",
     "static/js/2.bd720dc2.chunk.js.map": "/countdown/static/js/2.bd720dc2.chunk.js.map",
     "index.html": "/countdown/index.html",
-    "precache-manifest.b60aa832340a5647d84212f3edcc6561.js": "/countdown/precache-manifest.b60aa832340a5647d84212f3edcc6561.js",
+    "precache-manifest.cdd4e0936d85133f398696e578a21338.js": "/countdown/precache-manifest.cdd4e0936d85133f398696e578a21338.js",
     "service-worker.js": "/countdown/service-worker.js",
     "static/css/main.72a92c54.chunk.css.map": "/countdown/static/css/main.72a92c54.chunk.css.map",
     "static/media/index.css": "/countdown/static/media/Pixel-LCD-7.e2897552.woff"
